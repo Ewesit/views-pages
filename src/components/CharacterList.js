@@ -1,33 +1,28 @@
-
+// CharacterList.js
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Switch } from 'react-router-dom'; // import Switch from react-router-dom
 
-function CharacterList() {
+const FetchCharacterList = () => {
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
-    axios.get('https://rickandmortyapi.com/api/character')
-      .then(response => {
-        setCharacters(response.data.results);
-      })
-      .catch(error => {
-        console.error('Error fetching characters:', error);
-      });
+    // Fetch characters from the API
+    fetch('https://rickandmortyapi.com/api/character')
+      .then(response => response.json())
+      .then(data => setCharacters(data.results))
+      .catch(error => console.error('Error fetching characters:', error));
   }, []);
 
   return (
     <div>
-      <h2>Characters</h2>
+      <h1>Rick and Morty Characters</h1>
       <ul>
         {characters.map(character => (
-          <li key={character.id}>
-            <Link to={`/characters/${character.id}`}>{character.name}</Link>
-          </li>
+          <li key={character.id}>{character.name}</li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
-export default CharacterList;
+export default FetchCharacterList;
