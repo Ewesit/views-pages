@@ -3,18 +3,22 @@
 // Import necessary dependencies
 import React from 'react';
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter as Router
-import Home from "./components/Home";
-import CharacterList from "./components/CharacterList";
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter as Router
+import App from "./App";
+
 
 
 
 // Render the App component within the Router component
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-    <CharacterList />
-    
-)
+
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+    <React.StrictMode>
+      <BrowserRouter>
+      <App />
+      </BrowserRouter>
+    </React.StrictMode>,
+  )
 
 

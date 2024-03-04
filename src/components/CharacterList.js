@@ -1,6 +1,7 @@
 // CharacterList.js
 import React, { useState, useEffect } from 'react';
 import { Switch } from 'react-router-dom'; // import Switch from react-router-dom
+import { Link } from 'react-router-dom';
 
 const FetchCharacterList = () => {
   const [characters, setCharacters] = useState([]);
@@ -15,14 +16,21 @@ const FetchCharacterList = () => {
 
   return (
     <div>
-      <h1>Rick and Morty Characters</h1>
+      <h1>Characters</h1>
       <ul>
-        {characters.map(character => (
-          <li key={character.id}>{character.name}</li>
+        {characters.map((character) => (
+          <li key={character.id}>
+            <Link to={`/character/${character.id}`}>{character.name}</Link>
+            <Link to={`/character/${character.id}`}>{character.image}</Link>
+            <Link to={`/character/${character.id}`}>{character.status}</Link>
+
+            
+          </li>
         ))}
       </ul>
     </div>
   );
+  
 };
 
 export default FetchCharacterList;
